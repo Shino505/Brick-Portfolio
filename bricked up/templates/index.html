@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<section class="hero">
+    <div>
+        <h1>Hi, I'm {{ p.nickname }}. Welcome to my build.</h1>
+        <p class="lead">{{ p.about }}</p>
+        <a class="btn" href="/works">See my works</a>
+    </div>
+    <div class="hero-bricks" aria-hidden="true">
+        <span style="background:var(--red)"></span>
+        <span style="background:var(--yellow)"></span>
+        <span style="background:var(--blue)"></span>
+        <span style="background:var(--green)"></span>
+    </div>
+</section>
+
+<div class="grid">
+    <a class="tile brick red" href="/profile"><h2>Profile</h2><p>Who I am, what I study, and my motto.</p></a>
+    <a class="tile brick blue" href="/works"><h2>Works</h2><p>Programs I built, with 3D shapes you can spin.</p></a>
+    <a class="tile brick green" href="/contact"><h2>Contact</h2><p>Say hello or find me online.</p></a>
+</div>
+{% endblock %}

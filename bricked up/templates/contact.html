@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Contact{% endblock %}
+{% block content %}
+<h1>Contact me</h1>
+<div class="grid">
+    <div class="brick red"><h3>Email</h3><p><a href="mailto:{{ p.email }}">{{ p.email }}</a></p></div>
+    <div class="brick blue"><h3>Phone</h3><p>{{ p.phone }}</p></div>
+    <div class="brick green"><h3>Location</h3><p>{{ p.location }}</p></div>
+    <div class="brick yellow"><h3>Online</h3>
+        <p><a href="{{ p.github }}" target="_blank" rel="noopener">GitHub</a><br>
+           <a href="{{ p.facebook }}" target="_blank" rel="noopener">Facebook</a></p>
+    </div>
+</div>
+{% endblock %}

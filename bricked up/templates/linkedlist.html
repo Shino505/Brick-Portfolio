@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Linked List{% endblock %}
+{% block content %}
+<h1>Linked list</h1>
+<p class="lead">Each brick is a node. It holds a value and points to the next brick.</p>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, text in messages %}<div class="msg {{ category }}">{{ text }}</div>{% endfor %}
+{% endwith %}
+
+<div class="brick">
+    <h2>The chain</h2>
+    {% if items %}
+    <div class="chain" aria-label="Linked list nodes">
+        <span class="tagline">HEAD</span><span class="arrow">&rarr;</span>
+        {% for item in items %}
+            <div class="node c{{ loop.index0 % 4 }} {{ 'hit' if found == loop.index0 }}">
+                {{ item }}<small>index {{ loop.index0 }}</small>
+            </div>
+            <span class="arrow">&rarr;</span>
+        {% endfor %}
+        <span class="null">NULL</span>
+    </div>
+    <p>Length: <b>{{ items|length }}</b></p>
+    {% else %}
+    <p>The list is empty. Add a value below to place the first brick.</p>
+    <div class="chain"><span class="tagline">HEAD</span><span class="arrow">&rarr;</span><span class="null">NULL</span></div>
+    {% endif %}
+</div>
+
+<div class="brick yellow">
+    <h2>Controls</h2>
+    <form method="post" action="/works/linkedlist">
+        <div class="row">
+            <div>
+                <label for="value">Value</label>
+                <input type="text" id="value" name="value" maxlength="20" autocomplete="off">
+            </div>
+        </div>
+        <div class="row">
+            <button type="submit" name="action" value="head">Add to front</button>
+            <button type="submit" name="action" value="tail" class="blue">Add to end</button>
+            <button type="submit" name="action" value="search" class="green">Search</button>
+            <button type="submit" name="action" value="delete">Delete</button>
+        </div>
+        <div class="row">
+            <button type="submit" name="action" value="reverse" class="blue">Reverse</button>
+            <button type="submit" name="action" value="clear">Clear all</button>
+        </div>
+    </form>
+</div>
+<p><a href="/works">&larr; Back to works</a></p>
+{% endblock %}

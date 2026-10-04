@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}toUpperCase{% endblock %}
+{% block content %}
+<h1>Convert to uppercase</h1>
+<div class="brick">
+    <form action="/works/uppercase" method="post">
+        <div class="row">
+            <div>
+                <label for="inputString">Enter some text</label>
+                <input type="text" id="inputString" name="inputString" required>
+            </div>
+            <button type="submit">Convert</button>
+        </div>
+    </form>
+    {% if result %}<div class="result">{{ result }}</div>{% endif %}
+</div>
+<a href="/works">&larr; Back to works</a>
+{% endblock %}

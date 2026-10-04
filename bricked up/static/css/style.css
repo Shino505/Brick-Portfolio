@@ -1,0 +1,114 @@
+/* ===== LEGO theme ===== */
+:root{
+  --red:#D01012; --red-dk:#9b0b0d;
+  --yellow:#FFD500; --yellow-dk:#d4b000;
+  --blue:#0055BF; --green:#237841;
+  --ink:#1b1b1b; --plate:#f4f1e8;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; color:var(--ink); line-height:1.5;
+  font-family:"Fredoka","Trebuchet MS","Segoe UI",sans-serif;
+  background-color:var(--plate);
+  background-image:radial-gradient(circle, #e4dfd0 0 9px, transparent 10px);
+  background-size:44px 44px;
+}
+h1,h2,h3{line-height:1.1; margin:0 0 .5em; font-weight:700}
+h1{font-size:clamp(2.2rem,6vw,3.8rem)}
+h2{font-size:1.7rem}
+a{color:var(--blue)}
+:focus-visible{outline:4px solid var(--blue); outline-offset:3px}
+
+/* ---- Nav ---- */
+.nav{position:sticky; top:0; z-index:10; background:var(--red); border-bottom:6px solid var(--red-dk); padding:14px 20px}
+.nav-inner{max-width:1050px; margin:auto; display:flex; flex-wrap:wrap; gap:10px 18px; align-items:center; justify-content:space-between}
+.logo{
+  background:var(--yellow); color:var(--red); font-weight:700; font-size:1.3rem;
+  padding:4px 16px; border:3px solid var(--ink); border-radius:6px; text-decoration:none;
+  box-shadow:0 4px 0 var(--ink); transform:rotate(-2deg);
+}
+.nav ul{list-style:none; display:flex; flex-wrap:wrap; gap:10px; margin:0; padding:0}
+.nav ul a{display:block; padding:6px 16px; border-radius:8px; text-decoration:none; font-weight:600; background:#fff; color:var(--ink); border-bottom:5px solid #bbb; transition:transform .1s}
+.nav ul a:hover{transform:translateY(-2px)}
+.nav ul a.active{background:var(--yellow); border-bottom-color:var(--yellow-dk)}
+
+/* ---- Layout ---- */
+main{max-width:1050px; margin:44px auto 60px; padding:0 20px}
+.lead{font-size:1.15rem; max-width:60ch}
+
+/* ---- Brick card (studs on top) ---- */
+.brick{position:relative; background:#fff; border:3px solid var(--ink); border-radius:12px; padding:26px 24px 22px; margin-bottom:34px; box-shadow:0 8px 0 var(--ink)}
+.brick::after{ /* a row of studs sitting on top of the brick */
+  content:""; position:absolute; left:14px; right:14px; top:-12px; height:12px; pointer-events:none;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 11px, var(--stud,#fff) 11px 33px, transparent 33px 44px) 0 100%/100% 9px no-repeat,
+    repeating-linear-gradient(90deg, transparent 0 8px, var(--ink) 8px 36px, transparent 36px 44px) 0 0/100% 100% no-repeat;
+  border-radius:4px 4px 0 0;
+}
+.brick.red{background:var(--red); color:#fff; --stud:var(--red)}
+.brick.yellow{background:var(--yellow); --stud:var(--yellow)}
+.brick.blue{background:var(--blue); color:#fff; --stud:var(--blue)}
+.brick.green{background:var(--green); color:#fff; --stud:var(--green)}
+.brick.blue a,.brick.red a,.brick.green a{color:#fff}
+.grid{display:grid; gap:40px 26px; grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.grid .brick{margin-bottom:0}
+.tile{display:block; text-decoration:none; color:inherit; transition:transform .12s}
+.tile:hover{transform:translateY(-4px)}
+.tile p{margin:0}
+
+/* ---- Buttons / forms ---- */
+.btn,button{font:inherit; font-weight:700; cursor:pointer; color:#fff; background:var(--red); border:3px solid var(--ink); border-radius:8px; padding:8px 20px; box-shadow:0 5px 0 var(--ink)}
+.btn:active,button:active{transform:translateY(4px); box-shadow:0 1px 0 var(--ink)}
+button.blue{background:var(--blue)} button.green{background:var(--green)}
+button.yellow{background:var(--yellow); color:var(--ink)}
+.btn{display:inline-block; text-decoration:none}
+label{font-weight:600; display:block; margin-bottom:4px}
+input[type=text],input[type=number]{font:inherit; padding:8px 12px; border:3px solid var(--ink); border-radius:8px; width:100%; max-width:320px; background:#fffef2; color:var(--ink)}
+.row{display:flex; flex-wrap:wrap; gap:16px; align-items:flex-end; margin-bottom:16px}
+.result{margin-top:18px; padding:14px 18px; border:3px solid var(--ink); border-radius:10px; background:var(--yellow); color:var(--ink); font-size:1.25rem; font-weight:600}
+.msg{padding:10px 16px; border:3px solid var(--ink); border-radius:10px; margin-bottom:12px; font-weight:600}
+.msg.ok{background:#b9e6c4} .msg.error{background:#ffc3c3}
+.formula{font-size:1.1rem; background:#fff; border:3px dashed var(--ink); border-radius:10px; padding:10px 14px; margin:14px 0}
+
+/* ---- Tool layout: form + 3D viewer ---- */
+.tool{display:grid; gap:28px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); align-items:start}
+.viewer{position:relative; height:360px; border:3px solid var(--ink); border-radius:12px; overflow:hidden; background:linear-gradient(#bfe3ff,#eaf6ff); cursor:grab; touch-action:none}
+.viewer:active{cursor:grabbing}
+.viewer .hint{position:absolute; bottom:8px; left:0; right:0; text-align:center; font-size:.85rem; color:#335; pointer-events:none}
+
+/* ---- Profile ---- */
+.profile{display:grid; gap:34px; grid-template-columns:minmax(240px,320px) 1fr; align-items:start}
+.photo-frame{background:var(--yellow); border:3px solid var(--ink); border-radius:12px; padding:14px; box-shadow:0 8px 0 var(--ink); transform:rotate(-1.5deg)}
+.photo-frame img,.photo-frame .noimg{display:block; width:100%; aspect-ratio:1/1; object-fit:cover; border:3px solid var(--ink); border-radius:8px; background:#fff}
+.photo-frame .noimg{display:none; place-items:center; font-size:5rem}
+.facts{list-style:none; padding:0; margin:0 0 24px; display:grid; gap:10px}
+.facts li{display:flex; gap:12px; align-items:center; background:#fff; border:3px solid var(--ink); border-radius:10px; padding:8px 14px}
+.facts .tag{min-width:92px; font-weight:700; color:#fff; padding:2px 10px; border-radius:6px; text-align:center}
+.t-red{background:var(--red)} .t-blue{background:var(--blue)} .t-green{background:var(--green)} .t-yellow{background:var(--yellow); color:var(--ink)!important}
+.motto{font-size:1.5rem; font-weight:600; margin:0}
+.chips{display:flex; flex-wrap:wrap; gap:8px; padding:0; list-style:none; margin:0}
+.chips li{background:var(--yellow); border:3px solid var(--ink); border-radius:999px; padding:2px 14px; font-weight:600}
+@media (max-width:700px){.profile{grid-template-columns:1fr}}
+
+/* ---- Hero ---- */
+.hero{display:grid; gap:30px; grid-template-columns:1.2fr 1fr; align-items:center; margin-bottom:56px}
+.hero-bricks{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; transform:rotate(-4deg)}
+.hero-bricks span{aspect-ratio:2/1; border:3px solid var(--ink); border-radius:6px; position:relative; box-shadow:0 6px 0 var(--ink)}
+.hero-bricks span::after{content:""; position:absolute; top:-11px; left:18%; width:64%; height:11px; background:inherit; border:3px solid var(--ink); border-bottom:0; border-radius:6px 6px 0 0}
+@media (max-width:700px){.hero{grid-template-columns:1fr}}
+
+/* ---- Linked list ---- */
+.chain{display:flex; flex-wrap:wrap; align-items:center; gap:22px 8px; margin:26px 0 10px}
+.node{position:relative; min-width:100px; text-align:center; padding:12px 16px; font-weight:700; color:#fff; border:3px solid var(--ink); border-radius:8px; box-shadow:0 5px 0 var(--ink); overflow-wrap:anywhere}
+.node::before{content:""; position:absolute; top:-12px; left:50%; width:26px; height:12px; transform:translateX(-50%); background:inherit; border:3px solid var(--ink); border-bottom:0; border-radius:6px 6px 0 0}
+.node small{display:block; font-weight:500; opacity:.9}
+.node.c0{background:var(--red)} .node.c1{background:var(--blue)} .node.c2{background:var(--green)} .node.c3{background:#b57a00}
+.node.hit{outline:5px solid var(--yellow); animation:pop .5s}
+.arrow{font-size:1.6rem; font-weight:700}
+.tagline{font-weight:700; background:var(--yellow); border:3px solid var(--ink); border-radius:6px; padding:0 8px}
+.null{font-weight:700; border:3px dashed var(--ink); border-radius:8px; padding:8px 14px}
+@keyframes pop{0%{transform:scale(.8)}60%{transform:scale(1.1)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+
+footer{text-align:center; padding:26px; background:var(--ink); color:#fff}
+footer b{color:var(--yellow)}

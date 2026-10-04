@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Works{% endblock %}
+{% block content %}
+<h1>My programming works</h1>
+<p class="lead">Pick a brick. Each program has its own page, and the area tools have a 3D shape you can rotate.</p>
+<br>
+<div class="grid">
+    <a class="tile brick red" href="/works/uppercase"><h2>toUpperCase</h2><p>Turn any text into capital letters.</p></a>
+    <a class="tile brick yellow" href="/works/area/circle"><h2>Area of a Circle</h2><p>Enter a radius and see the disc grow.</p></a>
+    <a class="tile brick blue" href="/works/area/triangle"><h2>Area of a Triangle</h2><p>Enter base and height and see the prism.</p></a>
+    <a class="tile brick green" href="/works/linkedlist"><h2>Linked List</h2><p>Add, remove, search and reverse bricks in a chain.</p></a>
+</div>
+{% endblock %}

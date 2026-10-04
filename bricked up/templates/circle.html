@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Area of a Circle{% endblock %}
+{% block content %}
+<h1>Area of a circle</h1>
+<div class="tool">
+    <div class="brick">
+        <div class="formula">A = &pi; &times; r&sup2;</div>
+        <form action="/works/area/circle" method="post">
+            <div class="row">
+                <div>
+                    <label for="radius">Radius (r)</label>
+                    <input type="number" id="radius" name="radius" step="any" min="0" value="{{ radius if radius else '' }}" required>
+                </div>
+                <button type="submit">Compute</button>
+            </div>
+        </form>
+        {% if error %}<div class="msg error">{{ error }}</div>{% endif %}
+        {% if result %}<div class="result">Area = {{ result }} square units</div>{% endif %}
+        <p>The <b style="color:var(--red)">red bar</b> is the radius. Drag the shape to spin it.</p>
+    </div>
+    <div class="viewer" id="viewer" aria-label="3D circle">
+        <div class="hint">Type a radius and the disc resizes. Drag to rotate.</div>
+    </div>
+</div>
+<p><a href="/works">&larr; Back to works</a></p>
+{% endblock %}
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="{{ url_for('static', filename='js/shapes.js') }}"></script>
+<script>initCircle("viewer", "radius");</script>
+{% endblock %}

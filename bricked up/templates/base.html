@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Home{% endblock %} | {{ p.nickname if p else 'Portfolio' }}'s Brick Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="nav">
+        <div class="nav-inner">
+            <a class="logo" href="/">&#129521; Brick Portfolio</a>
+            <nav aria-label="Main">
+                <ul>
+                    <li><a href="/" class="{{ 'active' if request.path == '/' }}">Home</a></li>
+                    <li><a href="/profile" class="{{ 'active' if request.path == '/profile' }}">Profile</a></li>
+                    <li><a href="/works" class="{{ 'active' if request.path.startswith('/works') }}">Works</a></li>
+                    <li><a href="/contact" class="{{ 'active' if request.path == '/contact' }}">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>Built brick by brick with <b>Flask</b> &middot; {{ p.name if p else '' }}</footer>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<h1>My Profile</h1>
+<div class="profile">
+    <div class="photo-frame">
+        <img src="{{ url_for('static', filename=p.photo) }}" alt="Photo of {{ p.name }}"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+        <div class="noimg" role="img" aria-label="Photo placeholder">&#129521;</div>
+    </div>
+
+    <div>
+        <h2>{{ p.name }}</h2>
+        <ul class="facts">
+            <li><span class="tag t-red">Course</span> {{ p.year_course }}</li>
+            <li><span class="tag t-blue">Section</span> {{ p.section }}</li>
+            <li><span class="tag t-green">Subject</span> {{ p.subject }}</li>
+        </ul>
+
+        <div class="brick yellow">
+            <h3>My motto</h3>
+            <p class="motto">&ldquo;{{ p.motto }}&rdquo;</p>
+        </div>
+
+        <h3>About me</h3>
+        <p class="lead">{{ p.about }}</p>
+
+        <h3>Hobbies</h3>
+        <ul class="chips">
+            {% for h in p.hobbies %}<li>{{ h }}</li>{% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
